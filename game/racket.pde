@@ -1,9 +1,17 @@
-int height_racket = 40;
-int width_racket  = 40;
+int height_racket = 0;
+int width_racket  = 0;
 int x_racket = 500;
 int y_racket = 650;
+
 void showRacket(){
-    x_racket = mouseX;
+    if(mouseX + width_racket> gameUI_x){
+        x_racket = gameUI_x - width_racket;
+    }else{
+
+        x_racket = mouseX;
+    }
+    println("ラケット表示");
+    fill(255);
     rect(x_racket, y_racket, width_racket, height_racket);
 }
 
