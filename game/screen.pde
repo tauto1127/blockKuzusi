@@ -1,5 +1,6 @@
 private int screenType = 0;////
 
+
 void showGame(){
     //background(192, 192, 255);
     background(0, 0, 0);
@@ -7,6 +8,41 @@ void showGame(){
     showUI();
     stageForward();
     showRacket();
+}
+void showUI(){
+    stroke(255, 255, 255);
+    line(gameUI_x - 10, 0, gameUI_x + 10, 720);
+    //rect(gameUI_x - 2, 0, 3,720);
+    
+    fill(0,255,0);
+    //残り時間表示
+    text("残り時間", gameUI_x, 50);
+    fill(175, 223, 228);
+    text(time, gameUI_x, 120);
+    //スコア表示
+    fill(0,255,0);
+    text("スコア", gameUI_x, 220);
+    fill(175, 223, 228);
+    text(score, gameUI_x, 280);
+    line(gameUI_x - 5, 160, 1280, 160);
+    fill(0);
+
+    textFont(uiFont, 30);
+    fill(0,255,0);
+    text("ハイスコア",gameUI_x + 20, 600);
+    text("まで...", gameUI_x + 20, 660);
+    textFont(uiFont, 50);
+    fill(175, 223, 228);
+    if(score > highScore){
+        textFont(uiFont, 30);
+        text("ハイスコア更新中！", gameUI_x + 20, 720);
+        textFont(uiFont, 50);
+    }else{
+        text(highScore - score + "（" + highScore + "）", gameUI_x + 20, 720);
+    }
+    //text(highScore, gameUI_x+);
+
+    stroke(0,0,0);
 }
 void showGameOver(){
     background(192, 192, 255);
@@ -25,6 +61,7 @@ void showGameSuceed(){
     screenType = 11;
     text("GAMESUCEED："+ str(score), 100, 100);
     text("再びプレイする", 100, 500);
+    text("メニューに戻る", 100, 600);
 }
 
 void showMainMenu(){
@@ -41,52 +78,4 @@ void showDifficultySelectMenu(){
     text("難しい", 550, 350);
     text("ほぼ不可能", 510, 450);
     fill(0);
-}
-void mousePressed(){
-    switch(screenType){
-        case 0://メインメニュー
-            if(isOverlap(100, 450, 7 * 50, 50, mouseX,mouseY,10,10)){//xはそのまま yはy-文字の大きさ, 文字数*大きさ、大きさ
-            //stageInit();
-            //showGame();
-            showDifficultySelectMenu();
-            }
-            break;
-        case 12:
-            if(isOverlap(570, 200, 2 * 50, 50, mouseX,mouseY,10,10)){//xはそのまま yはy-文字の大きさ, 文字数*大きさ、大きさ
-                width_racket = 40;
-                height_racket = 40;
-                stageInit();
-                showGame();
-            }else if (isOverlap(550, 300, 3 * 50, 50, mouseX,mouseY,10,10)) {
-                width_racket = 80;
-                height_racket = 80;
-                stageInit();
-                showGame();
-            }else if (isOverlap(510, 400, 5 * 50, 50, mouseX,mouseY,10,10)) {
-                width_racket = 78;
-                height_racket = 78;
-                stageInit();
-                showGame();
-            }
-            break;
-        case 1://ゲーム画面
-            break;
-        case 10://ゲーム終了
-            if(isOverlap(100, 450, 7 * 50, 50, mouseX,mouseY,10,10)){//xはそのまま yはy-文字の大きさ, 文字数*大きさ、大きさ
-            stageInit();
-            showGame();
-            }else if (isOverlap(100, 550, 7 * 50, 50, mouseX,mouseY,10,10)) {
-                showMainMenu();
-            }
-            break;
-        case 11://ゲームオーバー
-            if(isOverlap(100, 450, 7 * 50, 50, mouseX,mouseY,10,10)){//xはそのまま yはy-文字の大きさ, 文字数*大きさ、大きさ
-            stageInit();
-            showGame();
-            }else if (isOverlap(100, 550, 7 * 50, 50, mouseX,mouseY,10,10)) {
-                showMainMenu();
-            }
-            break;
-    }
-    println("押された");
 }

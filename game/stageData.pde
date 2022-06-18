@@ -31,24 +31,34 @@ int frameTime = 0;
 int randomNum = 0;
 public int[][] stage;
 
+int score = 0;
+int highScore = 0;
+String difficulty = "common";
+
 boolean test = false;
 
 void stageInit(){
-    minLine = 0;maxLine = 0;distanceFromBottom = 0;time = 60;frameTime = 0;score=0;
+    minLine = 0;maxLine = 0;distanceFromBottom = 0;time = 60;frameTime = 0;score=0;//変数初期化
     int[][] arr = stageData.getStage1();
     stage = new int[arr.length][numOfRow];
     //stage = stageData.getStage1();
-    
+    highScore = int(loadStrings("/highScoreData/stage1"+difficulty)[0]);
     for(int i = 0;i <arr.length ; i++){
         for(int j = 0;j < numOfRow; j++){
             stage[i][j] = arr[i][j];
         }
     }
+    
     //showArray(stage);
     
 }
 void stageForward(){ //<>//
     if(time == 0){//時間制限に達したとき
+        if(score > highScore){
+            String[] lines = new String[1];
+            lines[0] = str(score);
+            saveStrings("/highScoreData/stage1"+difficulty,lines);
+        }
         showGameSuceed();
     }
     distanceFromBottom = distanceFromBottom + v_stage;
