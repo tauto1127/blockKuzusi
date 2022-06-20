@@ -8,6 +8,7 @@ void showGame(){
     showUI();
     stageForward();
     showRacket();
+    showBall();
 }
 void showUI(){
     stroke(255, 255, 255);

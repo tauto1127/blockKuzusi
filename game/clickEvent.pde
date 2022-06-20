@@ -22,7 +22,7 @@ void mousePressed(){
                 showGame();
             }
             else if (isOverlap(550, 300, 3 * 50, 50, mouseX,mouseY,10,10)) {//難しい
-                width_racket = 10;
+                width_racket = 60;
                 height_racket = 60;
                 difficulty = "difficult";
                 stageInit();
@@ -31,6 +31,7 @@ void mousePressed(){
             }
             break;
         case 1://ゲーム画面
+            arraylist.add(new Ball(mouseX, y_racket - height_racket, -10));
             break;
         case 10://ゲーム終了
             if(isOverlap(100, 450, 7 * 50, 50, mouseX,mouseY,10,10)){//xはそのまま yはy-文字の大きさ, 文字数*大きさ、大きさ

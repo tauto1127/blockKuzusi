@@ -25,7 +25,7 @@ static int v_stage = 10;//ステージの進む速さ
                     //15 6フレーム　
                     //10 8フレーム              7.5　　　　　　　　
 int time = 60;//0意外の適当な数字
-static int timeLimit = 5;//時間制限
+static int timeLimit = 15;//時間制限
 int frameTime = 0;
 
 int randomNum = 0;
@@ -48,7 +48,7 @@ void stageInit(){
             stage[i][j] = arr[i][j];
         }
     }
-    
+    arraylist = new ArrayList<Ball>();
     //showArray(stage);
     
 }
@@ -77,12 +77,24 @@ void stageForward(){ //<>//
                     fill(255);
                     break;
                 case 2:
-                    fill(300, 0, 0);
+                    fill(21, 255, 255);
                     //rect(j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight);
                     rectAndCheck(2,2, j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, true);
                     fill(255);
                     break;
                 case 3:
+                    fill(255, 255, 0);
+                    //rect(j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight);
+                    rectAndCheck(2,2, j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, true);
+                    fill(255);
+                    break;
+                case 4:
+                    fill(127, 0, 255);
+                    //rect(j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight);
+                    rectAndCheck(4,2, j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, true);
+                    fill(255);
+                    break;
+                case 8:
                     println("ケース3");
                     if(frameTime % 4 == 0){randomNum = int(random(0,255));}
                     colorMode(HSB);

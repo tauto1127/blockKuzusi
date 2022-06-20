@@ -32,15 +32,42 @@ int blockHitCheck(float x, float y, float w, float h,
 }*/
 void checkHit(int x1, int y1, int w1, int h1, 
   int x2, int y2, int w2, int h2, int blockScore, int arrayX, int arrayY, boolean isPoint){
+              println(x1);
     if(isOverlap(x1, y1, w1, h1, x2, y2, w2, h2) && screenType == 1){
+
         if(isPoint){
           score = score + blockScore;
           stage[arrayX][arrayY] = 0;
+
         }
         else{getHit();};
     }else{
     }
+    for(Ball ball : arraylist){//ボールの評価
+      if(isOverlap(x1, y1, w1, h1, ball.x, ball.y, width_ball, height_ball) && screenType == 1){
+        println("yes");
+        if(isPoint){
+          score = score + blockScore;
+          ball.dy = ball.dy * -1;
+          stage[arrayX][arrayY] = 0;
+        }else{
+          println(x1 +" "+ y1 +" "+ w1 +" "+ h1 +" "+ ball.x +" "+ ball.y +" "+ width_ball +" "+ height_ball);
+          ball.y = height_ball + y1 + h1 + 5;
+          ball.dy = ball.dy * -1;
+          stage[arrayX][arrayY] = stage[arrayX][arrayY] -1;
+        }
+      }else{
+
+      }
+    }
 }
+
+void checkHitRacketAndBall(int x1, int y1){
+  if(isOverlap(x1, y1, width_ball, height_ball, x_racket, y_racket, width_racket, height_racket)){
+    getHit();
+  }
+}
+
 void getHit(){
     println(stageBackUp);
     rect(100, 100, 100, 100); //<>//

@@ -2,6 +2,7 @@ int height_racket = 0;
 int width_racket  = 0;
 int x_racket = 500;
 int y_racket = 650;
+int dy_racket = 1;
 
 void showRacket(){
     if(mouseX + width_racket> gameUI_x){
@@ -18,7 +19,8 @@ void showRacket(){
 void keyPressed() {
     switch(keyCode){
         case UP:
-            width_racket = width_racket + 1; //<>//
+            //width_racket = width_racket + 1; //<>//
+
             break;
         case DOWN:
             width_racket = width_racket - 1;
@@ -26,4 +28,7 @@ void keyPressed() {
         default:
             break;
     }
+}
+void shotBall(){
+    
 }
