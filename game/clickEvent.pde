@@ -31,7 +31,12 @@ void mousePressed(){
             }
             break;
         case 1://ゲーム画面
-            arraylist.add(new Ball(mouseX, y_racket - height_racket, -10));
+            if(time % 2 == 0){
+                //arraylist.add(new Ball(mouseX, y_racket - height_racket, 0,-10));
+                arraylist.add(new Ball(mouseX, y_racket - height_racket, 0,-12));//int(random(-4, 4))
+            }else{
+                arraylist.add(new Ball(mouseX, y_racket - height_racket, 0,-12));
+            }
             break;
         case 10://ゲーム終了
             if(isOverlap(100, 450, 7 * 50, 50, mouseX,mouseY,10,10)){//xはそのまま yはy-文字の大きさ, 文字数*大きさ、大きさ
@@ -50,5 +55,4 @@ void mousePressed(){
             }
             break;
     }
-    println("押された");
 }

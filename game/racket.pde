@@ -11,7 +11,7 @@ void showRacket(){
 
         x_racket = mouseX;
     }
-    println("ラケット表示");
+    //println("ラケット表示");
     fill(255);
     rect(x_racket, y_racket, width_racket, height_racket);
 }

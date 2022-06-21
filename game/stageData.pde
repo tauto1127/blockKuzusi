@@ -28,7 +28,7 @@ int time = 60;//0意外の適当な数字
 static int timeLimit = 15;//時間制限
 int frameTime = 0;
 
-int randomNum = 0;
+int randomNum;
 public int[][] stage;
 
 int score = 0;
@@ -37,6 +37,10 @@ String difficulty = "common";
 
 boolean test = false;
 
+
+PImage maxBrokenImage;
+PImage twoBrokenImage;
+PImage threeBrokenImage;
 void stageInit(){
     minLine = 0;maxLine = 0;distanceFromBottom = 0;time = 60;frameTime = 0;score=0;//変数初期化
     int[][] arr = stageData.getStage1();
@@ -52,7 +56,13 @@ void stageInit(){
     //showArray(stage);
     
 }
+void loadImages(){
+    maxBrokenImage = loadImage("/Images/max.png");
+    twoBrokenImage = loadImage("/Images/two.png");
+    threeBrokenImage = loadImage("/Images/three.png");
+}
 void stageForward(){ //<>//
+    if(frameTime % 4 == 0){randomNum = int(random(0,200));}
     if(time == 0){//時間制限に達したとき
         if(score > highScore){
             String[] lines = new String[1];
@@ -67,7 +77,12 @@ void stageForward(){ //<>//
      //<>// //<>// //<>//
      for(int i = 0; i <= 10; i++){
         for(int j = 0; j < numOfRow;j++){
+            
             switch(stage[i+minLine][j]){//スイッチ文でブロックの形や色などの見た目を定義
+                case -1:
+                    fill(110,110,110);
+                    rectAndCheck(0,1, j * default_blockX,(8-i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, false);
+                    fill(255);
                 case 0:
                     break;
                 case 1:
@@ -75,34 +90,61 @@ void stageForward(){ //<>//
                     fill(169,169,169);
                     rectAndCheck(0,1, j * default_blockX,(8-i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, false);
                     fill(255);
+                    image(maxBrokenImage, j * default_blockX, (8-i) * default_blockY);
                     break;
                 case 2:
+                    //rect(j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight);
+                    fill(169,169,169);
+                    rectAndCheck(0,1, j * default_blockX,(8-i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, false);
+                    fill(255);
+                    image(twoBrokenImage, j * default_blockX, (8-i) * default_blockY);
+                    break;
+                case 3:
+                    //rect(j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight);
+                    fill(169,169,169);
+                    rectAndCheck(0,1, j * default_blockX,(8-i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, false);
+                    fill(255);
+                    image(threeBrokenImage, j * default_blockX, (8-i) * default_blockY);
+                    break;
+                case 4:
+                    //rect(j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight);
+                    fill(169,169,169);
+                    rectAndCheck(0,1, j * default_blockX,(8-i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, false);
+                    fill(255);
+                    break;
+                case 5:
                     fill(21, 255, 255);
                     //rect(j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight);
                     rectAndCheck(2,2, j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, true);
                     fill(255);
                     break;
-                case 3:
+                case 6:
                     fill(255, 255, 0);
-                    //rect(j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight);
-                    rectAndCheck(2,2, j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, true);
-                    fill(255);
-                    break;
-                case 4:
-                    fill(127, 0, 255);
                     //rect(j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight);
                     rectAndCheck(4,2, j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, true);
                     fill(255);
                     break;
-                case 8:
-                    println("ケース3");
-                    if(frameTime % 4 == 0){randomNum = int(random(0,255));}
-                    colorMode(HSB);
-                    fill(randomNum,255,255);
+                case 7:
+                    fill(127, 0, 255);
+                    //rect(j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight);
                     rectAndCheck(5,2, j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, true);
-                    colorMode(RGB);
                     fill(255);
-
+                    break;
+                case 8:
+                    //println("ケース3");
+                    
+                    colorMode(HSB,360,100,100);
+                    fill(randomNum,100,100);
+                    println(randomNum);
+                    rectAndCheck(7,2, j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, true);
+                    colorMode(RGB, 255, 255, 255);
+                    //fill(255);
+                case 9:
+                    fill(255, 0, 0);
+                    //rect(j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight);
+                    rectAndCheck(5,2, j * default_blockX,(8 - i) * default_blockY, default_blockWitdh, default_blockHeight,i+minLine,j, true);
+                    fill(255);
+                    break;
                     // break;
                 default:
             }
@@ -188,7 +230,7 @@ void showArray(int[][] arra){
     for (int iy = 0; iy <= 30; iy++) {
     for (int ix = 0; ix <= 15; ix++) {
       // 要素の値をランダムに
-      println(arra[ix][iy]);
+      //println(arra[ix][iy]);
     }
   }
 

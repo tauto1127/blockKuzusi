@@ -13,8 +13,10 @@ void setup() {
     frameRate(60);
     //byte[] bytes = loadBytes("data//stage1");
     //println(bytes);
-    
+    loadImages();
+//if(frameTime % 4 == 0){randomNum = int(random(0,200));}
 
+println("らｍだあああああああああ" + randomNum);
     //println(string);
     /*char[string.length] chars;
     for(int i = 0; i < string.length;i++){
