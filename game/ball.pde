@@ -15,13 +15,12 @@ class Ball{
         this.dy = dy;
     }
 }
-public ArrayList<Ball> arraylist = new ArrayList<Ball>();
+public ArrayList<Ball> ballList = new ArrayList<Ball>();
 void showBall(){
-    for(Ball ball: arraylist){
+    for(Ball ball: ballList){
         rect(ball.x, ball.y, width_ball, height_ball);
         ball.y = ball.y + ball.dy;
         ball.x = ball.x + ball.dx;
-        //checkHit(ball.x, ball.y, width_ball, height_ball, x_racket, y_racket, width_racket, height_racket, 0,0, 0, false);
         checkHitRacketAndBall(ball.x, ball.y);
     }
 }

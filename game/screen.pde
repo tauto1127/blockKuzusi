@@ -1,20 +1,18 @@
-private int screenType = 0;////
-
+private int screenType = 0;
+int gameUI_x = 1040;
 
 void showGame(){
-    //background(192, 192, 255);
     background(0, 0, 0);
     screenType = 1;
-    showUI();
-    stageForward();
+    showGameUI();
+    stageProceed();
     showRacket();
     showBall();
 }
-void showUI(){
+void showGameUI(){
     stroke(255, 255, 255);
     line(gameUI_x - 10, 0, gameUI_x + 10, 720);
-    //rect(gameUI_x - 2, 0, 3,720);
-    
+
     fill(0,255,0);
     //残り時間表示
     text("残り時間", gameUI_x, 50);
@@ -41,15 +39,13 @@ void showUI(){
     }else{
         text(highScore - score + "（" + highScore + "）", gameUI_x + 20, 720);
     }
-    //text(highScore, gameUI_x+);
-
     stroke(0,0,0);
 }
 void showGameOver(){
     background(192, 192, 255);
     screenType = 10;
     textFont(uiFont, 100);
-    text("GAMEOVER", 350, 100);//800
+    text("GAMEOVER", 350, 100);
     textFont(uiFont, 50);
     fill(255,0,0);
     text("スコアは"+str(score)+"です",400, 200);

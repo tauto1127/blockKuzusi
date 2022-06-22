@@ -1,6 +1,6 @@
 class StageData{
     
-    private int[][] stage1 = //1280/80 = 16  720/80 = 9
+    private int[][] _stage1 = //1280/80 = 16  720/80 = 9
     //ステージ長さの計算式
     //秒数　＊　一秒で進むブロック
 //    1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16
@@ -133,6 +133,6 @@ class StageData{
     {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 };
     public int[][] getStage1(){
-        return this.stage1;
+        return this._stage1;
     }
 }
